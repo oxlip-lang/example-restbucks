@@ -4,3 +4,5 @@ Install [OAL](https://www.oxlip-lang.org/doc/installation.html), checkout and ru
 ```
 oal-cli -c ./oal.toml
 ```
+
+Review the compiled [OpenAPI definition in Redoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/oxlip-lang/example-restbucks/main/openapi.yaml).

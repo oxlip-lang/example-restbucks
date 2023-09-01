@@ -1,7 +1,11 @@
 openapi: 3.0.3
 info:
-  title: OpenAPI definition
-  version: 0.1.0
+  title: Restbucks
+  description: OpenAPI definition for the Restbucks imaginary coffee shop
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
 servers:
 - url: /
 paths:

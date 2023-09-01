@@ -1,3 +1,4 @@
 [api]
 main = "main.oal"
+base = "base.yaml"
 target = "openapi.yaml"
