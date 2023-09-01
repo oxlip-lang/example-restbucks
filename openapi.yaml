@@ -1,0 +1,271 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI definition
+  version: 0.1.0
+servers:
+- url: /
+paths:
+  /orders:
+    get:
+      summary: Retrieve all orders
+      description: Retrieve all orders
+      operationId: get-orders
+      responses:
+        '200':
+          description: OK
+          headers:
+            Location:
+              style: simple
+              schema:
+                example: /orders
+                title: orders collection relation
+                type: string
+                format: uri-reference
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+                required:
+                - orders
+    post:
+      summary: Create an order
+      description: Create an order
+      operationId: post-orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order:
+                  $ref: '#/components/schemas/order'
+              required:
+              - order
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              style: simple
+              schema:
+                example: /orders/_id_integer_
+                title: order relation
+                type: string
+                format: uri-reference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+  /orders/{id}:
+    put:
+      summary: Update an order
+      description: Update an order
+      operationId: put-orders-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order:
+                  $ref: '#/components/schemas/order'
+              required:
+              - order
+      responses:
+        '200':
+          description: OK
+          headers:
+            Location:
+              style: simple
+              schema:
+                example: /orders/_id_integer_
+                title: order relation
+                type: string
+                format: uri-reference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+        '409':
+          description: Conflict
+          headers:
+            Location:
+              style: simple
+              schema:
+                example: /orders/_id_integer_
+                title: order relation
+                type: string
+                format: uri-reference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+    delete:
+      summary: Delete an order
+      description: Delete an order
+      operationId: delete-orders-id
+      responses:
+        '200':
+          description: Deleted
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        title: internal identifier
+        type: integer
+      style: simple
+  /payments/{id}:
+    get:
+      summary: Retrieve a payment
+      description: Retrieve a payment
+      operationId: get-payments-id
+      responses:
+        '200':
+          description: OK
+          headers:
+            Location:
+              style: simple
+              schema:
+                example: /payments/_id_integer_
+                title: payment relation
+                type: string
+                format: uri-reference
+          content:
+            application/json:
+              schema:
+                title: payment resource representation
+                type: object
+                properties:
+                  payment:
+                    $ref: '#/components/schemas/payment'
+                required:
+                - payment
+    put:
+      summary: Make a payment
+      description: Make a payment
+      operationId: put-payments-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payment:
+                  $ref: '#/components/schemas/payment'
+              required:
+              - payment
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              style: simple
+              schema:
+                example: /payments/_id_integer_
+                title: payment relation
+                type: string
+                format: uri-reference
+          content:
+            application/json:
+              schema:
+                title: payment resource representation
+                type: object
+                properties:
+                  payment:
+                    $ref: '#/components/schemas/payment'
+                required:
+                - payment
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        title: internal identifier
+        type: integer
+      style: simple
+components:
+  schemas:
+    order:
+      title: drink order
+      type: object
+      properties:
+        drink:
+          example: espresso
+          title: drink
+          type: string
+          enum:
+          - espresso
+          - latte
+        additions:
+          type: array
+          items:
+            example: shot
+            title: addition to a drink
+            type: string
+            enum:
+            - shot
+        cost:
+          example: 4.45
+          title: price
+          type: number
+        status:
+          example: created
+          title: status of an order
+          type: string
+          enum:
+          - created
+          - preparing
+          - ready
+      required:
+      - drink
+    hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce:
+      title: order resource representation
+      allOf:
+      - type: object
+        properties:
+          order:
+            $ref: '#/components/schemas/order'
+        required:
+        - order
+      - type: object
+        properties:
+          payment:
+            example: /payments/_id_integer_
+            title: payment relation
+            type: string
+            format: uri-reference
+          edit:
+            example: /orders/_id_integer_
+            title: order relation
+            type: string
+            format: uri-reference
+    payment:
+      title: payment
+      type: object
+      properties:
+        cardNo:
+          title: credit card number
+          type: string
+          pattern: ^[0-9]{16}$
+        expires:
+          example: 10/25
+          title: credit card expiration month and year
+          type: string
+          pattern: ^[0-9]{2}/[0-9]{2}$
+        name:
+          type: string
+        amount:
+          example: 4.45
+          title: price
+          type: number
+      required:
+      - cardNo
+      - expires
+      - name
+      - amount
