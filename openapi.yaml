@@ -33,7 +33,7 @@ paths:
                   orders:
                     type: array
                     items:
-                      $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+                      $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
                 required:
                 - orders
     post:
@@ -64,7 +64,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
+                required:
+                - order
   /orders/{id}:
     put:
       summary: Update an order
@@ -94,7 +99,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
+                required:
+                - order
         '409':
           description: Conflict
           headers:
@@ -108,7 +118,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce'
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
+                required:
+                - order
     delete:
       summary: Delete an order
       description: Delete an order
@@ -143,7 +158,6 @@ paths:
           content:
             application/json:
               schema:
-                title: payment resource representation
                 type: object
                 properties:
                   payment:
@@ -178,7 +192,6 @@ paths:
           content:
             application/json:
               schema:
-                title: payment resource representation
                 type: object
                 properties:
                   payment:
@@ -228,15 +241,10 @@ components:
           - ready
       required:
       - drink
-    hash-e213ae3f19287296479a29c9c1981a1785336cea8898cd369625f3c265bc30ce:
+    hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472:
       title: order resource representation
       allOf:
-      - type: object
-        properties:
-          order:
-            $ref: '#/components/schemas/order'
-        required:
-        - order
+      - $ref: '#/components/schemas/order'
       - type: object
         properties:
           payment:
