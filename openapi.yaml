@@ -33,7 +33,7 @@ paths:
                   orders:
                     type: array
                     items:
-                      $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
+                      $ref: '#/components/schemas/hash-0e04db8c09b51bfcd6d4e3ea1e2c92d2e101799f8a98b6129a98d7ff9edb0014'
                 required:
                 - orders
     post:
@@ -67,7 +67,7 @@ paths:
                 type: object
                 properties:
                   order:
-                    $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
+                    $ref: '#/components/schemas/hash-0e04db8c09b51bfcd6d4e3ea1e2c92d2e101799f8a98b6129a98d7ff9edb0014'
                 required:
                 - order
   /orders/{id}:
@@ -102,7 +102,7 @@ paths:
                 type: object
                 properties:
                   order:
-                    $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
+                    $ref: '#/components/schemas/hash-0e04db8c09b51bfcd6d4e3ea1e2c92d2e101799f8a98b6129a98d7ff9edb0014'
                 required:
                 - order
         '409':
@@ -121,7 +121,7 @@ paths:
                 type: object
                 properties:
                   order:
-                    $ref: '#/components/schemas/hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472'
+                    $ref: '#/components/schemas/hash-0e04db8c09b51bfcd6d4e3ea1e2c92d2e101799f8a98b6129a98d7ff9edb0014'
                 required:
                 - order
     delete:
@@ -241,7 +241,7 @@ components:
           - ready
       required:
       - drink
-    hash-99dfdd6867b0d4c7e1751bdf0fec883b7ffbf0fd42c61970a9a5572757c1c472:
+    hash-0e04db8c09b51bfcd6d4e3ea1e2c92d2e101799f8a98b6129a98d7ff9edb0014:
       title: order resource representation
       allOf:
       - $ref: '#/components/schemas/order'
